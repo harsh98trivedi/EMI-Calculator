@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="title" content="EMI Calculator">
+    <meta name="description" content="The EMI Calculator app is a powerful tool designed to help you calculate the Equated Monthly Installment (EMI) for your loans. Whether you have a personal loan, a home loan, or any other type of loan, our app provides you with a simple and convenient way to determine your monthly repayment amount.">
+    <meta name="keywords" content="EMI, EMI-Calculator, Equated Monthly Instalment, Monthly Installment, Calculate EMI">
+    <meta name="image" content="https://raw.githubusercontent.com/harsh98trivedi/EMI-Calculatormaster/meta.jpg">
+
+    <!-- Open Graph general (Facebook, Pinterest) -->
+    <meta name="og:title" content="EMI Calculator">
+    <meta name="og:description" content="The EMI Calculator app is a powerful tool designed to help you calculate the Equated Monthly Installment (EMI) for your loans. Whether you have a personal loan, a home loan, or any other type of loan, our app provides you with a simple and convenient way to determine your monthly repayment amount.">
+    <meta name="og:image" content="https://raw.githubusercontent.com/harsh98trivedi/EMI-Calculatormaster/meta.jpg">
+    <meta name="og:image:alt" content="EMI Calculator">
+    <meta name="og:site_name" content="EMI Calculator">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EMI Calculator">
+    <meta name="twitter:description" content="The EMI Calculator app is a powerful tool designed to help you calculate the Equated Monthly Installment (EMI) for your loans. Whether you have a personal loan, a home loan, or any other type of loan, our app provides you with a simple and convenient way to determine your monthly repayment amount.">
+    <meta name="twitter:image:src" content="https://raw.githubusercontent.com/harsh98trivedi/EMI-Calculatormaster/meta.jpg">
+
+    <!-- Search Engine -->
+    <meta name="description" content="The EMI Calculator app is a powerful tool designed to help you calculate the Equated Monthly Installment (EMI) for your loans. Whether you have a personal loan, a home loan, or any other type of loan, our app provides you with a simple and convenient way to determine your monthly repayment amount.">
+    <meta name="image" content="https://raw.githubusercontent.com/harsh98trivedi/EMI-Calculatormaster/meta.jpg">
+
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="EMI Calculator">
+    <meta itemprop="description" content="The EMI Calculator app is a powerful tool designed to help you calculate the Equated Monthly Installment (EMI) for your loans. Whether you have a personal loan, a home loan, or any other type of loan, our app provides you with a simple and convenient way to determine your monthly repayment amount.">
+    <meta itemprop="image" content="https://raw.githubusercontent.com/harsh98trivedi/EMI-Calculatormaster/meta.jpg">
+
+    <meta name="revisit-after" content="150 days">
+  
+    <title>EMI Calculator</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+    </style>
+</head>
+
+<body class="bg-gray-100 grid place-content-center min-h-screen text-center"
+    style="font-family: 'Quicksand', sans-serif;">
+    <a href="https://harsh98trivedi.github.io/EMI-Calculator"><img src="favicon.png"
+            alt="Voting Eligibility Checker" class="mx-auto w-36 h-36 my-5 shadow-lg rounded-full" /></a>
+    <div class="bg-white p-3 rounded-xl shadow-lg px-10 mx-5">
+        <h1 class="text-2xl font-bold my-5">EMI Calculator</h1>
+        <label class="my-2" for="principal">Principal Amount:</label><br>
+        <input placeholder="1" class="border border-gray-300 rounded px-3 py-2 my-3 w-full" type="number" id="principal"
+            name="principal" oninput="calculateEMI()" autofocus><br>
+        <label class="my-2" for="interestRate">Rate of Interest (% per annum):</label><br>
+        <input placeholder="1" class="border border-gray-300 rounded px-3 py-2 my-3 w-full" type="number"
+            id="interestRate" name="interestRate" step="0.01" oninput="calculateEMI()"><br>
+        <label class="my-2" for="loanTerm">Loan Term (in years):</label><br>
+        <input placeholder="1" class="border border-gray-300 rounded px-3 py-2 my-3 w-full" type="number" id="loanTerm"
+            name="loanTerm" oninput="calculateEMI()"><br>
+        <button class="bg-black text-white py-2 px-4 rounded my-2 hover:bg-gray-500" onclick="calculateEMI()">Calculate
+            EMI</button><br>
+        <p id="emiResult" class="my-4 text-lg font-bold"></p>
+
+        <script>
+            function calculateEMI() {
+                const principalInput = document.getElementById("principal");
+                const interestRateInput = document.getElementById("interestRate");
+                const loanTermInput = document.getElementById("loanTerm");
+
+                const principal = parseFloat(principalInput.value) || 1;
+                const interestRate = parseFloat(interestRateInput.value) / 100 || 1;
+                const loanTerm = parseFloat(loanTermInput.value) || 1;
+
+                const monthlyInterestRate = interestRate / 12;
+                const numberOfPayments = loanTerm * 12;
+
+                const emi = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / (
+                    Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+
+                document.getElementById("emiResult").innerText = "Monthly EMI: " + emi.toFixed(2);
+            }
+        </script>
+    </div>
+    <p class="mx-auto my-5">Made with <i class="fa-solid fa-heart text-red-600"></i> by <a
+            href="https://htlink.netlify.app/" target="_blank"><strong class="underline text-blue-600">Harsh
+                Trivedi</strong></a></p>
+</body>
+
+</html>
